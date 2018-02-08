@@ -1,0 +1,77 @@
+（1）Tab 切换改变颜色
+
+<ul class="tab">
+    <li v-for="(item,index) in data" @click="show(index)":class="{'active':ind === index}">{{item.tab}}</li>
+  </ul>
+  export default {
+
+    data(){
+      return{
+	  ind=""
+	  }
+	 }
+	 methods:{
+	  show:function (index) {
+        this.ind=index
+	}
+	 }
+}
+<style scoped>
+.active{
+color:#fff
+}
+</style
+
+（2）vue 传参
+传递参数
+this.$router.push（{
+path:"A"    //地址
+query:{      //传递的参数
+name:"Holle",
+age:"4545"
+
+}
+}）
+
+接受参数
+ mounted(){
+     const a=this.$route.query.age
+//      console.log(a)
+    }
+	
+	
+（3）日期组件
+1、npm install vue-datepicker-simple  安装模块
+
+2、npm install --save babel-polyfill  安装es6模块
+
+<div id="app">
+	<label for="myDate">选择您的新婚之日</label>
+	<date-picker field="myDate"
+				 placeholder="选择日期"
+				 v-model="date"
+				 format="yyyy/mm/dd"
+				 :backward="false"
+				 :no-today="true"
+				 :forward="true"></date-picker>
+</div>
+
+<script>
+import 'babel-polyfill'; //因为使用了es6的一些方法，需要babel垫片，如果你项目中已有相关兼容性方案，可忽略
+import Vue from 'vue';
+import myDatepicker from 'vue-datepicker-simple/datepicker-2.vue'; //引入对应的组件
+
+new Vue({
+    el: '#app',
+    data:{
+        date: ''
+    },
+    components:{
+        'date-picker': myDatepicker
+    }
+});
+</script>
+
+
+(4)输入框只能输入数字
+<input name="page" type="text" size="14" maxlength="14" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
